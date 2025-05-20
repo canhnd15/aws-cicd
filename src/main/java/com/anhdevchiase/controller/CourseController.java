@@ -18,8 +18,7 @@ public class CourseController {
 
     @PostMapping(produces = "application/json", consumes = "application/json")
     public ResponseEntity<?> addCourse(@RequestBody CourseReq req) {
-        courseService.addCourse(req);
-        return new ResponseEntity<>(req, HttpStatus.CREATED);
+        return new ResponseEntity<>(courseService.addCourse(req), HttpStatus.CREATED);
     }
 
     @GetMapping(produces = "application/json")

@@ -15,14 +15,21 @@ import java.util.List;
 public class CourseService {
     private final CourseRepository courseRepository;
 
-    public void addCourse(CourseReq courseReq) {
+    public CourseResp addCourse(CourseReq courseReq) {
         Course course = Course.builder()
                 .name(courseReq.getName())
                 .price(courseReq.getPrice())
+                .time(courseReq.getTime())
                 .createdDate(LocalDateTime.now())
                 .build();
 
-        courseRepository.save(course);
+        course = courseRepository.save(course);
+
+        return CourseResp.builder()
+                .name(course.getName())
+                .price(course.getPrice())
+                .time(course.getTime())
+                .build();
     }
 
     public List<CourseResp> getAllCourses() {
